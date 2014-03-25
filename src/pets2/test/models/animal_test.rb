@@ -31,7 +31,8 @@ class AnimalTest < ActiveSupport::TestCase
 		gender: "Guy or Girl",
 		age: "Young or Old",
 		habits: "They do stuff",
-		image_url: image_url)
+		image_url: image_url,
+		status: 'available')
 	end
 	test "image url" do
 		ok = %w{ fred.gif fred.jpg fred.png FRED.JPG FRED.Jpg
