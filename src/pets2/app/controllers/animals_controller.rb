@@ -6,9 +6,9 @@ class AnimalsController < ApplicationController
   def index
 	@sort = params[:sort]
 	if @sort
-		if @sort == 'breed'
+		if @sort == 'breed'	# user selected to sort by breed
 			@animals = Animal.order(:breed)
-		else
+		else				# user selected to sort by animal name(default)
 			@animals = Animal.order(:name)
 		end
 	else
@@ -37,7 +37,7 @@ class AnimalsController < ApplicationController
 
     respond_to do |format|
       if @animal.save
-        format.html { redirect_to @animal, notice: 'Animal was successfully created.' }
+        format.html { redirect_to @animal, notice: 'Animal was successfully created.' }	# go to the animals show page after created
         format.json { render action: 'show', status: :created, location: @animal }
       else
         format.html { render action: 'new' }
@@ -51,7 +51,7 @@ class AnimalsController < ApplicationController
   def update
     respond_to do |format|
       if @animal.update(animal_params)
-        format.html { redirect_to @animal, notice: 'Animal was successfully updated.' }
+        format.html { redirect_to @animal, notice: 'Animal was successfully updated.' } # go to the animals show page after created
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

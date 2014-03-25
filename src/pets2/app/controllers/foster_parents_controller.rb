@@ -1,6 +1,6 @@
 class FosterParentsController < ApplicationController
   before_action :set_foster_parent, only: [:show, :edit, :update, :destroy]
-  @@animal_fostered = Animal.first
+  @@animal_fostered = Animal.first	# made animal that gets fostered global so it can be used in all methods
   # GET /foster_parents
   # GET /foster_parents.json
   def index
@@ -31,9 +31,9 @@ class FosterParentsController < ApplicationController
     @foster_parent = FosterParent.new(foster_parent_params)
     respond_to do |format|
       if @foster_parent.save
-		@@animal_fostered.status = "Fostered"
-		@@animal_fostered.save
-        format.html { redirect_to adoption_url, notice: 'Thank you for fostering.' }
+		@@animal_fostered.status = "Fostered"	# user has successfully fostered pet so change its status
+		@@animal_fostered.save					# save the new parameters of the animal so db is updated
+        format.html { redirect_to adoption_url, notice: 'Thank you for fostering.' }	# go back to catalog page
         format.json { render action: 'show', status: :created, location: @foster_parent }
       else
         format.html { render action: 'new' }
