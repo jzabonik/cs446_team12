@@ -5,9 +5,9 @@ class AdoptionController < ApplicationController
   def index
 	@sort = params[:sort]
 	if @sort
-		if @sort == 'breed'
+		if @sort == 'breed'		# user chose to sort by breed
 			@animals = Animal.order(:breed)
-		else
+		else					# user chose to sort by animal name(default)
 			@animals = Animal.order(:name)
 		end
 	else
