@@ -1,6 +1,6 @@
 class FostersController < ApplicationController
   before_action :set_foster, only: [:show, :edit, :update, :destroy]
-  @@foster_animal = Animal.first
+  @@foster_animal = Animal.first	# created global for the animal to be used in both new and show actions
   # GET /fosters
   # GET /fosters.json
   def index
@@ -28,7 +28,7 @@ class FostersController < ApplicationController
 	@animals = Animal.find(params[:animal_id])
     @foster = Foster.new(foster_params)
 
-	@@foster_animal = params[:animal_id]
+	@@foster_animal = params[:animal_id]	# save animal_id from params into global
     respond_to do |format|
       if @foster.save
         format.html { redirect_to @foster }

@@ -27,12 +27,12 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     animal = Animal.find(params[:animal_id])
-    @line_item = @consideration.add_animal(animal.id)
+    @line_item = @consideration.add_animal(animal.id)	# add selected animal to consideration list
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to adoption_url }
-		format.js { @current_item = @line_item }
+        format.html { redirect_to adoption_url }	# go back to catalog 
+		format.js { @current_item = @line_item }	# highlight current animal added to consideration list
         format.json { render action: 'show', status: :created, location: @line_item }
       else
         format.html { render action: 'new' }
