@@ -1,6 +1,6 @@
 class Animal < ActiveRecord::Base
-  STATUS_TYPES = [ "Available", "Fostered" ]
-  has_many :line_items
+  STATUS_TYPES = [ "Available", "Fostered" ]  # available status types for the animals and for users to select
+  has_many :line_items						# line items reference animals to be used in the consideration list
   
   before_destroy :ensure_not_referenced_by_any_line_item
 
