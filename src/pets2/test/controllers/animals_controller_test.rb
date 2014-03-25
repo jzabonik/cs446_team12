@@ -9,7 +9,8 @@ class AnimalsControllerTest < ActionController::TestCase
 		gender: 'Yes please',
 		age: 'Don\'t we all',
 		habits: 'Wibbles are fun!',
-		image_url: 'lorem.jpg'
+		image_url: 'lorem.jpg',
+    status: 'available'
 	}
   end
 
