@@ -4,7 +4,6 @@ class FosterParentsController < ApplicationController
   # GET /foster_parents
   # GET /foster_parents.json
   def index
-    @foster_parents = FosterParent.all
   end
 
   # GET /foster_parents/1
