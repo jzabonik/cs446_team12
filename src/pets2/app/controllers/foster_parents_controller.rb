@@ -78,6 +78,7 @@ class FosterParentsController < ApplicationController
     end
 	
 	def who_fostered
+    @parents = FosterParent.all()
 	  respond_to do |format|
 	    format.atom
 	  end
