@@ -99,7 +99,7 @@ Pokemon.create!(name: 'Pidgey',
 Pokemon.create!(name: 'Pidgeotto',
   type_one: 'Normal',
   type_two: 'Flying',
-  image_url: 'Pidgeotto',
+  image_url: 'Pidgeotto.png',
   pokedex: 17)
 # . . .
 Pokemon.create!(name: 'Pidgeot',
@@ -582,12 +582,12 @@ Pokemon.create!(name: 'Marowak',
 # . . .
 Pokemon.create!(name: 'Hitmonlee',
   type_one: 'Fighting',
-  image_url: 'Hitmonlee',
+  image_url: 'Hitmonlee.png',
   pokedex: 106)
 # . . .
 Pokemon.create!(name: 'Hitmonchan',
   type_one: 'Fighting',
-  image_url: 'Hitmonchan',
+  image_url: 'Hitmonchan.png',
   pokedex: 107)
 # . . .
 Pokemon.create!(name: 'Lickitung',

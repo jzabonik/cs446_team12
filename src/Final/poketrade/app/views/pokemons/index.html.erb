@@ -1,35 +1,30 @@
-<h1>Listing pokemons</h1>
+<h1>Listing Pokémon</h1>
 
 <table>
-  <thead>
+  <% @pokemons.each do |pokemon| %>
     <tr>
-      <th>Name</th>
-      <th>Type one</th>
-      <th>Type two</th>
-      <th>Image url</th>
-      <th>Pokedex</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <td>
+        <%= image_tag(pokemon.image_url, class: 'list_image') %>
+      </td>
+      <td class="list_description">
+        <ul>
+          <li class="name" id="<%= pokemon.type_one %>"><%= pokemon.name %></li>
+		  <% if pokemon.type_two %>
+		    <li>Type: <%= pokemon.type_one %>/<%= pokemon.type_two %></li>
+		  <% else %>
+		    <li>Type: <%= pokemon.type_one %></li>
+		  <% end %>
+		  <li>Pokédex: <%= pokemon.pokedex %></li>
+        <ul>
+      </td>
+      <td class="list_actions">
+        <%= link_to 'Show', pokemon %><br/>
+        <%= link_to 'Edit', edit_pokemon_path(pokemon) %><br/>
+        <%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @pokemons.each do |pokemon| %>
-      <tr>
-        <td><%= pokemon.name %></td>
-        <td><%= pokemon.type_one %></td>
-        <td><%= pokemon.type_two %></td>
-        <td><%= pokemon.image_url %></td>
-        <td><%= pokemon.pokedex %></td>
-        <td><%= link_to 'Show', pokemon %></td>
-        <td><%= link_to 'Edit', edit_pokemon_path(pokemon) %></td>
-        <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% end %>
 </table>
+<br />
 
-<br>
-
-<%= link_to 'New Pokemon', new_pokemon_path %>
+<%= link_to 'New Pokémon', new_pokemon_path %>

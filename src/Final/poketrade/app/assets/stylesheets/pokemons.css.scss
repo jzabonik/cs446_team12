@@ -1,3 +1,83 @@
 // Place all the styles related to the Pokemons controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pokemons {
+  table {
+    border-collapse: collapse;
+  }
+  
+  table tr td {
+    padding: 5px;
+    vertical-align: center;
+  }
+
+  .list_image {
+    width: 60px;
+    height: 70px;
+  }
+
+  .list_description {
+    width: 80%;
+	
+
+    ul li{
+      margin: 0;
+	  display: inline;
+      list-style-type: none;
+    }
+
+	.name {
+      font-weight: bold;
+      font-size: larger;
+	  #Fire {
+	  color: red;
+	}
+	#Water {
+	  color: dodgerblue;
+	}
+	#Electric {
+	  color: yellow;
+	}
+	#Psychic {
+	  color: lightcoral;
+	}
+	#Rock {
+	  color: darkslategray;
+	}
+	#Ground {
+	  color: darkgoldenrod;
+	}
+	#Poison {
+	  color: darkorchid;
+	}
+	#Bug {
+	  color: chartreuse;
+	}
+	#Dragon {
+	  color: cadetblue;
+	}
+	#Ice {
+	  color: aquamarine;
+	}
+	#Fighting {
+	  color: brown;
+	}
+	#Ghost {
+	  color: darkmagenta;
+	}
+	#Grass {
+	  color: forestgreen;
+	}
+	#Normal {
+	  color: lightgray;
+	}
+	}
+  }
+  
+  .list_actions {
+    font-size: x-small;
+    text-align: right;
+    padding-left: 1em;
+  }
+}
