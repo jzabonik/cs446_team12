@@ -18,60 +18,60 @@
   }
 
   .list_description {
-    width: 80%;
+    width: 35%;
 	
 
-    ul li{
+    p{
       margin: 0;
-	  display: inline;
-      list-style-type: none;
     }
 
 	.name {
+	  padding-left: 3em;
       font-weight: bold;
       font-size: larger;
-	  #Fire {
-	  color: red;
 	}
-	#Water {
-	  color: dodgerblue;
-	}
-	#Electric {
-	  color: yellow;
-	}
-	#Psychic {
-	  color: lightcoral;
-	}
-	#Rock {
-	  color: darkslategray;
-	}
-	#Ground {
+	
+	  .name#Fire {
+	    color: red;
+	  }
+	  .name#Water {
+	    color: dodgerblue;
+	  }
+	  .name#Electric {
+	    color: yellow;
+	  }
+	  .name#Psychic {
+	    color: lightcoral;
+	  }
+	  .name#Rock {
+	    color: darkslategray;
+	  }
+	.name#Ground {
 	  color: darkgoldenrod;
 	}
-	#Poison {
+	.name#Poison {
 	  color: darkorchid;
 	}
-	#Bug {
+	.name#Bug {
 	  color: chartreuse;
 	}
-	#Dragon {
+	.name#Dragon {
 	  color: cadetblue;
 	}
-	#Ice {
+	.name#Ice {
 	  color: aquamarine;
 	}
-	#Fighting {
+	.name#Fighting {
 	  color: brown;
 	}
-	#Ghost {
+	.name#Ghost {
 	  color: darkmagenta;
 	}
-	#Grass {
+	.name#Grass {
 	  color: forestgreen;
 	}
-	#Normal {
+	.name#Normal {
 	  color: lightgray;
-	}
 	}
   }
   

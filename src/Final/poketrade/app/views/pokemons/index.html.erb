@@ -7,16 +7,18 @@
         <%= image_tag(pokemon.image_url, class: 'list_image') %>
       </td>
       <td class="list_description">
-        <ul>
-          <li class="name" id="<%= pokemon.type_one %>"><%= pokemon.name %></li>
-		  <% if pokemon.type_two %>
-		    <li>Type: <%= pokemon.type_one %>/<%= pokemon.type_two %></li>
-		  <% else %>
-		    <li>Type: <%= pokemon.type_one %></li>
-		  <% end %>
-		  <li>Pokédex: <%= pokemon.pokedex %></li>
-        <ul>
+        <p class="name" id="<%= pokemon.type_one %>"><%= pokemon.name %></p>
       </td>
+	  <td>
+	    <% if pokemon.type_two %>
+		  <p>Type: <%= pokemon.type_one %>/<%= pokemon.type_two %></p>
+		<% else %>
+		  <p>Type: <%= pokemon.type_one %><p>
+		<% end %>
+	  </td>
+	  <td>
+	    <p>Pokédex: <%= pokemon.pokedex %></p>
+	  </td>
       <td class="list_actions">
         <%= link_to 'Show', pokemon %><br/>
         <%= link_to 'Edit', edit_pokemon_path(pokemon) %><br/>
