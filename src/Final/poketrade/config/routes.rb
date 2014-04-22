@@ -7,7 +7,11 @@ Poketrade::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-    root 'catalog#index', as: 'catalog'
+#    root 'catalog#index', as: 'catalog'
+	
+	devise_scope :trainer do
+     root to: "devise/sessions#new"
+    end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
