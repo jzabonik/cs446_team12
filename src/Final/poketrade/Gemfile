@@ -46,3 +46,6 @@ end
 
 # Use Devise
 gem 'devise'
+
+# Use Carrierwave
+gem 'carrierwave'

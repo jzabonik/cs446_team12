@@ -4,7 +4,6 @@ class DeviseCreateTrainers < ActiveRecord::Migration
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-	  t.string :image_url, default: "pokeball.png"
 
       ## Recoverable
       t.string   :reset_password_token
