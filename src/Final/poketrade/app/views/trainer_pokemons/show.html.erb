@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<%= pokemon = Pokemon.find(@trainer_pokemon.pokemon_id) %>
+<%= trainer = Trainer.find(@trainer_pokemon.trainer_id) %>
+<p>
+  <strong>Pokemon:</strong>
+  <%= pokemon.name %>
+</p>
+
+<p>
+  <strong>Trainer:</strong>
+  <%= trainer.email %>
+</p>
+
+<%= link_to 'Edit', edit_trainer_pokemon_path(@trainer_pokemon) %> |
+<%= link_to 'Back', trainer_pokemons_path %>

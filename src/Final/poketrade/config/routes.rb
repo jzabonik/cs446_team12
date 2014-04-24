@@ -1,6 +1,8 @@
 Poketrade::Application.routes.draw do
+  resources :trainer_pokemons
+
   get "catalog/index"
-  devise_for :trainers
+  devise_for :trainers, :controllers => { :registrations => "registrations" }
   resources :pokemons
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,5 +1,6 @@
 class Trainer < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
+  has_many :trainer_pokemons
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
