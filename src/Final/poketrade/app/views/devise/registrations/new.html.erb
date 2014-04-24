@@ -16,7 +16,8 @@
     <%= f.file_field :avatar %>
 	<%= f.hidden_field :avatar_cache %></div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div style="float: left;, width: auto;">
+    <%= f.submit "Sign up" %>
+  </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<%= button_to 'Sign in', new_trainer_session_path, :method => "get" %>

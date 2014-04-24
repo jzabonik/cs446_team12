@@ -4,18 +4,19 @@
 
 <h1>Trainer Catalog</h1>
 
-  <% Trainer.all.each do |trainer| %>
+<% cache ['catalog', Trainer.latest] do %>
+  <% @trainers.each do |trainer| %>
     <% if trainer.id != current_trainer.id %>
       <% cache ['entry', trainer] do %>
         <div class="entry">
 		  <table>
 		    <tr>
 			  <td>
-                <%= image_tag(trainer.avatar, class: 'trainer_image') %><br />
+                <%= image_tag(trainer.avatar) %><br />
 				<%= trainer.email %>
 			  </td>
 			  <td>
-			    <table class="pokemon_table">
+			    <table>
 			      <% TrainerPokemon.where(trainer_id: trainer.id).each do |trainerpokemon| %>
                   <% pokemon = Pokemon.find(trainerpokemon.pokemon_id) %>
                     <tr>
@@ -35,6 +36,9 @@
 	                  <td>
 	                    <p>Pokédex: <%= pokemon.pokedex %></p>
 	                  </td>
+                      <td class="list_actions">
+                        <%= button_to 'Trade', fosters_path(animal_id: animal)%>
+                      </td>
                     </tr>
                   <% end %>
                 </table>
@@ -45,3 +49,4 @@
       <% end %>
     <% end %>
   <% end %>
+<% end %>

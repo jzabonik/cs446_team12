@@ -1,4 +1,5 @@
 Poketrade::Application.routes.draw do
+  get "profile/index"
   resources :trainer_pokemons
 
   get "catalog/index"

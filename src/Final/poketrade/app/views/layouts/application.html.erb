@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Poketrade</title>
+  <title>PokéTrade</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= controller.controller_name %>'>
-
-<%= yield %>
-
+  <div id="banner">
+    <%= image_tag("pokeball.png", class: 'list_image1') %>
+    <%= @page_title || "PokéTrade" %>
+	<%= image_tag("pokeball.png", class: 'list_image2') %>
+  </div>
+  <div id="columns">
+    <div id="side">
+	  <% if trainer_signed_in?%>
+		Logged in as <strong><%= current_trainer.email %></strong>.<br>
+		<%= link_to 'Edit profile', edit_trainer_registration_path %> |
+		<%= link_to "Logout", destroy_trainer_session_path, method: :delete  %>
+	  <% end %>
+        <p><%= link_to "Pokédex", pokemons_path%></p>
+        <p><%= link_to "Trainers", catalog_index_path%></p>
+		<p><%= link_to "Profile", profile_index_path%></p>
+    </div>
+    <div id="main">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>
