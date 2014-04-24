@@ -3,8 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .pokemons {
+  h1 {
+		margin: 0;
+		padding-bottom: 0.5em;
+		font: 200% sans-serif;
+		color: cornflowerblue;
+  }
+
   table {
     border-collapse: collapse;
+  }
+  
+  table tr {
+    border-bottom: 3px dotted sandybrown;
   }
   
   table tr td {
