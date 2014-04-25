@@ -13,11 +13,11 @@
  */
 
  #banner {
-  background: sandybrown;
+  background: firebrick;
   padding: 10px;
   border-bottom: 2px solid;
   font: small-caps 60px/60px "Times New Roman", serif;
-  color: cornflowerblue;
+  color: black;
   text-align: center;
   height: 75px;
   
@@ -43,7 +43,7 @@
 }
 
 #columns {
-  background: cornflowerblue;
+  background: black;
 
   #main {
     margin-left: 17em;
@@ -55,7 +55,7 @@
     float: left;
     padding: 1em 2em;
     width: 13em;
-    background: cornflowerblue;
+    background: black;
 
     form, div {
       display: inline;
@@ -65,7 +65,7 @@
       padding: 0;
 	  font-size: medium;
 	  a{
-	    color: sandybrown;
+	    color: white;
 	  }
     }
   }
