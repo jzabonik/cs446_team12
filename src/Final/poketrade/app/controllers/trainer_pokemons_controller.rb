@@ -1,4 +1,5 @@
 class TrainerPokemonsController < ApplicationController
+  before_filter :check_logged_in!
   before_action :set_trainer_pokemon, only: [:show, :edit, :update, :destroy]
 
   # GET /trainer_pokemons
@@ -70,5 +71,13 @@ class TrainerPokemonsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def trainer_pokemon_params
       params.require(:trainer_pokemon).permit(:pokemon_id, :trainer_id)
+    end
+	
+	def check_logged_in! # if admin is not logged in, user must be logged in
+      if !admin_signed_in?
+        authenticate_user!
+	  else
+		authenticate_admin!
+      end   
     end
 end

@@ -1,4 +1,6 @@
 class PokemonsController < ApplicationController
+  before_filter :authenticate_admin!, :except => [:show, :index]
+  before_filter :check_logged_in!, :only => [:show, :index]
   before_action :set_pokemon, only: [:show, :edit, :update, :destroy]
 
   # GET /pokemons
@@ -70,5 +72,11 @@ class PokemonsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pokemon_params
       params.require(:pokemon).permit(:name, :type_one, :type_two, :image_url, :pokedex)
+    end
+	
+	def check_logged_in! # if admin is not logged in, user must be logged in
+      if !admin_signed_in?
+        authenticate_user!
+      end   
     end
 end
