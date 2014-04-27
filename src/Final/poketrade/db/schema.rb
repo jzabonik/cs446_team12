@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425075035) do
+ActiveRecord::Schema.define(version: 20140425215936) do
 
   create_table "admins", force: true do |t|
     t.string   "email",              default: "", null: false
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 20140425075035) do
     t.integer  "pokedex"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "trade_requests", force: true do |t|
+    t.integer  "trader_id"
+    t.integer  "tradee_id"
+    t.string   "completed",  default: "no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trade_requests_trainer_pokemons", force: true do |t|
+    t.integer "trainer_pokemon_id"
+    t.integer "trade_request_id"
   end
 
   create_table "trainer_pokemons", force: true do |t|

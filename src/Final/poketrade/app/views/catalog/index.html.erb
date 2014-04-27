@@ -35,6 +35,9 @@
 	                  <td>
 	                    <p>Pokédex: <%= pokemon.pokedex %></p>
 	                  </td>
+					  <td>
+					    <%= link_to 'Trade', trade_index_path(:trainer_id => trainer.id, :pokemon_id => pokemon.id) %>
+					  </td>
                     </tr>
                   <% end %>
                 </table>

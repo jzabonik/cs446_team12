@@ -1,3 +1,117 @@
 // Place all the styles related to the Profile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile {
+  h1 {
+		margin: 0;
+		padding-bottom: 0.5em;
+		font: 150% sans-serif;
+		color: black;
+  }
+
+  table {
+    border-collapse: collapse;
+	width: 100%;
+	vertical-align: center;
+	border-bottom: 3px dotted firebrick;
+  }
+  
+  table caption {
+    text-align: left;
+  }
+  
+  .completed_table {
+    border: none;
+  }
+  
+  .pokemon_table {
+    border: none;
+  }
+  
+  .sent_table {
+    border: none;
+  }
+  
+  .received_table {
+    border: none;
+  }
+  
+  .received_table tr td{
+   border: 2px solid black;
+   width: 33%
+  }
+  
+  .sent_table tr td{
+   border: 2px solid black;
+   width:33%
+  }
+  
+  .trainer_image {
+    width: 120px;
+	height: 120px;
+  }
+  
+  .list_image {
+    width: 30px;
+    height: 35px;
+  }
+
+  .list_description {
+    width: 35%;
+	
+
+    p{
+      margin: 0;
+    }
+
+	.name {
+	  padding-left: 2em;
+      font-weight: bold;
+      font-size: larger;
+	}
+	
+	  .name#Fire {
+	    color: red;
+	  }
+	  .name#Water {
+	    color: dodgerblue;
+	  }
+	  .name#Electric {
+	    color: yellow;
+	  }
+	  .name#Psychic {
+	    color: lightcoral;
+	  }
+	  .name#Rock {
+	    color: darkslategray;
+	  }
+	.name#Ground {
+	  color: darkgoldenrod;
+	}
+	.name#Poison {
+	  color: darkorchid;
+	}
+	.name#Bug {
+	  color: chartreuse;
+	}
+	.name#Dragon {
+	  color: cadetblue;
+	}
+	.name#Ice {
+	  color: aquamarine;
+	}
+	.name#Fighting {
+	  color: brown;
+	}
+	.name#Ghost {
+	  color: darkmagenta;
+	}
+	.name#Grass {
+	  color: forestgreen;
+	}
+	.name#Normal {
+	  color: lightgray;
+	}
+  }
+}

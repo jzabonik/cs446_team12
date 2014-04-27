@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
       pokemon = Pokemon.where(pokedex: num).take
       TrainerPokemon.create(:trainer_id => current_trainer.id, :pokemon_id => pokemon.id)
 	end
-    catalog_index_path
+    profile_index_path
   end
 
 end

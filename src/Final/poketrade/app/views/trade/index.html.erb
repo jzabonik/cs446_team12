@@ -1,0 +1,24 @@
+<h1>Trade Proposal</h1>
+
+<%= form_for(:trade_request, url: trade_requests_path(:trainer_one => @trainer, :pokemon_one => @pokemon, :trainer_two => current_trainer), html: { :onsubmit => "return confirm('Are you sure?')" }) do |f| %>
+  <div><%= @trainer.email %></div>
+
+  <div><%= @pokemon.name %></div>
+
+  <div><%= current_trainer.email %></div>
+  
+  <div>
+    <ul>
+      <% @current_pokemon.each do |currentpokemon| %>
+        <li>
+	      <%= check_box_tag 'currentpokemon_ids[]', currentpokemon.id %>
+	      <%= h currentpokemon.name %>
+	    </li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div>
+    <%= f.submit "Submit Trade" %>
+  </div>
+<% end %>

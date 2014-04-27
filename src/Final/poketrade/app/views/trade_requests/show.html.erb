@@ -1,0 +1,12 @@
+<table>
+  <% @trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+    <tr>
+      <td>
+	    <%= Trainer.find(trainer_pokemon.trainer_id).email %>
+	  </td>
+	  <td>
+	    <%= Pokemon.find(trainer_pokemon.pokemon_id).name %>
+	  </td>
+    </tr>
+  <% end %>
+</table>

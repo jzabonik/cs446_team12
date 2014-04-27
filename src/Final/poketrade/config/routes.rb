@@ -1,4 +1,11 @@
 Poketrade::Application.routes.draw do
+  get "trade/index"
+  resources :trade_requests do
+    member do
+      post 'accept_trade'
+    end
+  end
+
   devise_for :admins
   get "profile/index"
   resources :trainer_pokemons

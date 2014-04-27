@@ -2,51 +2,172 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<h1>Trainer Catalog</h1>
+<div class="pokemon_list">
+  <h1><%= current_trainer.email %></h1>
+  <table>
+	<tr>
+	  <td>
+        <%= image_tag(current_trainer.avatar) %><br />
+	  </td>
+	  <td>
+		<table class="pokemon_table">
+		  <% TrainerPokemon.where(trainer_id: current_trainer.id).each do |trainerpokemon| %>
+            <% pokemon = Pokemon.find(trainerpokemon.pokemon_id) %>
+            <tr>
+              <td>
+                <%= image_tag(pokemon.image_url, class: 'list_image') %>
+              </td>
+              <td class="list_description">
+                <p class="name" id="<%= pokemon.type_one %>"><%= pokemon.name %></p>
+              </td>
+	          <td>
+	            <% if pokemon.type_two %>
+		          <p>Type: <%= pokemon.type_one %>/<%= pokemon.type_two %></p>
+		        <% else %>
+		          <p>Type: <%= pokemon.type_one %><p>
+		        <% end %>
+	          </td>
+	          <td>
+	            <p>Pokédex: <%= pokemon.pokedex %></p>
+	          </td>
+            </tr>
+          <% end %>
+        </table>
+	  </td>
+	</tr>
+  </table>
+</div>
 
-<% cache ['catalog', Trainer.latest] do %>
-  <% @trainers.each do |trainer| %>
-    <% if trainer.id != current_trainer.id %>
-      <% cache ['entry', trainer] do %>
-        <div class="entry">
-		  <table>
+<div class="request_list">
+  <h1>Trade Requests</h1>
+  <table class="requests_table">
+    <tr>
+	  <td>
+        <table class="sent_table">
+		  <caption><h3>Sent Requests</h3></caption>
+		  <tr>
+			<td><h4>Their Pokémon</h4></td>
+			<td><h4>Your Pokémon</h4></td>
+			<td><h4>Options</h4></td>
+		  </tr>
+		  <% current_trainer.sent_trades.each do |trade_request| %>
+		    <% if trade_request.completed == "no" %>
 		    <tr>
 			  <td>
-                <%= image_tag(trainer.avatar) %><br />
-				<%= trainer.email %>
+		        <% trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+			      <% if trainer_pokemon.trainer_id != current_trainer.id %>
+					<%= image_tag(Pokemon.find(trainer_pokemon.pokemon_id).image_url, class: 'list_image') %>
+			      <% end %>
+			    <% end %>
 			  </td>
 			  <td>
-			    <table>
-			      <% TrainerPokemon.where(trainer_id: trainer.id).each do |trainerpokemon| %>
-                  <% pokemon = Pokemon.find(trainerpokemon.pokemon_id) %>
-                    <tr>
-                      <td>
-                        <%= image_tag(pokemon.image_url, class: 'list_image') %>
-                      </td>
-                      <td class="list_description">
-                        <p class="name" id="<%= pokemon.type_one %>"><%= pokemon.name %></p>
-                      </td>
-	                  <td>
-	                    <% if pokemon.type_two %>
-		                  <p>Type: <%= pokemon.type_one %>/<%= pokemon.type_two %></p>
-		                <% else %>
-		                  <p>Type: <%= pokemon.type_one %><p>
-		                <% end %>
-	                  </td>
-	                  <td>
-	                    <p>Pokédex: <%= pokemon.pokedex %></p>
-	                  </td>
-                      <td class="list_actions">
-                        <%= button_to 'Trade', fosters_path(animal_id: animal)%>
-                      </td>
-                    </tr>
-                  <% end %>
-                </table>
+		        <% trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+			      <% if trainer_pokemon.trainer_id == current_trainer.id %>
+					<%= image_tag(Pokemon.find(trainer_pokemon.pokemon_id).image_url, class: 'list_image') %>
+			      <% end %>
+			    <% end %>
+			  </td>
+			  <td>
+				<%= button_to 'Cancel', trade_request, method: :delete, data: { confirm: 'Are you sure?' } %>
 			  </td>
 			</tr>
-		  </table>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
+			<% end %>
+		  <% end %>
+        </table>
+	  </td>
+	</tr>
+    <tr>
+	  <td>
+        <table class="received_table">
+		  <caption><h3>Received Requests</h3></caption>
+		  <tr>
+			<td><h4>Their Pokémon</h4></td>
+			<td><h4>Your Pokémon</h4></td>
+			<td><h4>Options</h4></td>
+		  </tr>
+		  <% current_trainer.received_trades.each do |trade_request| %>
+		    <% if trade_request.completed == "no" %>
+		    <tr>
+			  <td>
+		        <% trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+			      <% if trainer_pokemon.trainer_id != current_trainer.id %>
+					<%= image_tag(Pokemon.find(trainer_pokemon.pokemon_id).image_url, class: 'list_image') %>
+			      <% end %>
+			    <% end %>
+			  </td>
+			  <td>
+		        <% trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+			      <% if trainer_pokemon.trainer_id == current_trainer.id %>
+					<%= image_tag(Pokemon.find(trainer_pokemon.pokemon_id).image_url, class: 'list_image') %>
+			      <% end %>
+			    <% end %>
+			  </td>
+			  <td>
+				<%= button_to 'Accept', accept_trade_trade_request_path(:id => trade_request.id), data: { confirm: 'Are you sure?' } %>
+				<%= button_to 'Reject', trade_request, method: :delete, data: { confirm: 'Are you sure?' } %>
+			  </td>
+			</tr>
+			<% end %>
+		  <% end %>
+        </table>
+	  </td>
+	</tr>
+  </table>
+</div>
+
+<div class="completed_list">
+  <h1>Trade History</h1>
+  <table class="completed_table">
+    <tr>
+	  <td>
+        <table class="trade_table">
+		  <caption><h3>Completed Trades</h3></caption>
+		  <tr>
+			<td><h4>Their Pokémon</h4></td>
+			<td><h4>Your Pokémon</h4></td>
+		  </tr>
+		  <% current_trainer.sent_trades.each do |trade_request| %>
+		    <% if trade_request.completed == "yes" %>
+		      <tr>
+			    <td>
+		          <% trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+			        <% if trainer_pokemon.trainer_id != current_trainer.id %>
+					  <%= image_tag(Pokemon.find(trainer_pokemon.pokemon_id).image_url, class: 'list_image') %>
+			        <% end %>
+			      <% end %>
+			    </td>
+			    <td>
+		          <% trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+			        <% if trainer_pokemon.trainer_id == current_trainer.id %>
+					  <%= image_tag(Pokemon.find(trainer_pokemon.pokemon_id).image_url, class: 'list_image') %>
+			        <% end %>
+			      <% end %>
+			    </td>
+			  </tr>
+			<% end %>
+		  <% end %>
+		  <% current_trainer.received_trades.each do |trade_request| %>
+		    <% if trade_request.completed == "yes" %>
+		      <tr>
+			    <td>
+		          <% trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+			        <% if trainer_pokemon.trainer_id != current_trainer.id %>
+				  	  <%= image_tag(Pokemon.find(trainer_pokemon.pokemon_id).image_url, class: 'list_image') %>
+			        <% end %>
+			      <% end %>
+			    </td>
+			    <td>
+		          <% trade_request.trainer_pokemons.each do |trainer_pokemon| %>
+			        <% if trainer_pokemon.trainer_id == current_trainer.id %>
+				  	  <%= image_tag(Pokemon.find(trainer_pokemon.pokemon_id).image_url, class: 'list_image') %>
+			        <% end %>
+			      <% end %>
+			    </td>
+			  </tr>
+			<% end %>
+		  <% end %>
+        </table>
+	  </td>
+	</tr>
+  </table>
+</div>

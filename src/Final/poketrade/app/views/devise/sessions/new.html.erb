@@ -1,21 +1,32 @@
-<h2>Sign in</h2>
+<table align="center" width="40%"><tr><td><h1>Welcome Trainer</h1></td></tr></table>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+<table align="center" width="75%">
+  <tr>
+    <td>
+	  <%= image_tag "Nurse_joy.png" %>
+	</td>
+    <td>
+	  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	    <div><%= f.label :email %><br />
+	    <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+	    <div><%= f.label :password %><br />
+	      <%= f.password_field :password, autocomplete: "off" %></div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-  <div><%= link_to "Forgot Password?", new_password_path(:trainer) %></div>
-  
-  <div style="float: left;, width: auto;">
-    <%= f.submit "Sign in" %>
-  </div>
-<% end %>
-<%= button_to 'Register', new_trainer_registration_path, :method => "get" %>
-
+	    <% if devise_mapping.rememberable? -%>
+		  <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+	    <% end -%>
+	    <div><%= link_to "Forgot Password?", new_password_path(:trainer) %></div>
+	  
+	    <div style="float: left;, width: auto;">
+		  <%= f.submit "Sign in" %>
+	    </div>
+	  <% end %>
+	  <%= button_to 'Register', new_trainer_registration_path, :method => "get" %>
+    </td>
+	<td>
+	  <%= image_tag "Professor_Oak_XY.png" %>
+	</td>
+  </tr>
+</table>
 
