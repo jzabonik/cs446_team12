@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425215936) do
+ActiveRecord::Schema.define(version: 20140427081824) do
 
   create_table "admins", force: true do |t|
     t.string   "email",              default: "", null: false
@@ -28,6 +28,21 @@ ActiveRecord::Schema.define(version: 20140425215936) do
     t.datetime "updated_at"
   end
 
+  create_table "pokemon_trainers", force: true do |t|
+    t.integer  "pokemon_id"
+    t.integer  "trainer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pokemon_trainers", ["pokemon_id"], name: "index_pokemon_trainers_on_pokemon_id"
+  add_index "pokemon_trainers", ["trainer_id"], name: "index_pokemon_trainers_on_trainer_id"
+
+  create_table "pokemon_trainers_trade_completes", force: true do |t|
+    t.integer "pokemon_trainer_id"
+    t.integer "trade_complete_id"
+  end
+
   create_table "pokemons", force: true do |t|
     t.string   "name"
     t.string   "type_one"
@@ -38,10 +53,16 @@ ActiveRecord::Schema.define(version: 20140425215936) do
     t.datetime "updated_at"
   end
 
+  create_table "trade_completes", force: true do |t|
+    t.integer  "completer_id"
+    t.integer  "completee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "trade_requests", force: true do |t|
     t.integer  "trader_id"
     t.integer  "tradee_id"
-    t.string   "completed",  default: "no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

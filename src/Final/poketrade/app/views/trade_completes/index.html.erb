@@ -1,0 +1,25 @@
+<h1>Listing trade_completes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trade_completes.each do |trade_complete| %>
+      <tr>
+        <td><%= link_to 'Show', trade_complete %></td>
+        <td><%= link_to 'Edit', edit_trade_complete_path(trade_complete) %></td>
+        <td><%= link_to 'Destroy', trade_complete, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trade complete', new_trade_complete_path %>

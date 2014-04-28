@@ -1,4 +1,5 @@
 class TradeRequestsController < ApplicationController
+  before_filter :check_logged_in!
   before_action :set_trade_request, only: [:show, :edit, :update, :destroy]
 
   # GET /trade_requests
@@ -71,12 +72,16 @@ class TradeRequestsController < ApplicationController
   
   def accept_trade
     @trade_request = TradeRequest.find(params[:id])
-    # Change completed parameter to "yes"
-    @trade_request.completed = "yes"
-	@trade_request.save
+    # Created the trade_complete
+	flash[:trade_request => @trade_request.id]
+	pokemon_trainers = Array.new
+	@trade_request.trainer_pokemons.each do |trainer_pokemon|
+	      pokemon_trainers << PokemonTrainer.create(:trainer_id => trainer_pokemon.trainer_id, :pokemon_id => trainer_pokemon.pokemon_id)
+	end
+    @trade_complete = TradeComplete.create(:completer => @trade_request.trader, :completee => @trade_request.tradee, :pokemon_trainers => pokemon_trainers)
   
     # Destroys other trade_requests that involved the pokemon
-    TradeRequest.where(completed: "no").each do |tr|
+    TradeRequest.where("id != ?", @trade_request.id).each do |tr|
 	  tr.trainer_pokemons.each do |tp|
 	    catch :found_duplicate do 
 	      @trade_request.trainer_pokemons.each do |trainer_pokemon|
@@ -99,6 +104,7 @@ class TradeRequestsController < ApplicationController
 	  trainer_pokemon.destroy
 	end
 	
+	@trade_request.destroy
     respond_to do |format|
       format.html { redirect_to profile_index_path }
       format.json { head :no_content }
@@ -114,5 +120,13 @@ class TradeRequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def trade_request_params
       params[:trade_request]
+    end
+	
+	def check_logged_in! # if admin is not logged in, user must be logged in
+      if !admin_signed_in?
+        authenticate_trainer!
+	  else
+		authenticate_admin!
+      end   
     end
 end

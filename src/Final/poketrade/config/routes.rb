@@ -1,4 +1,8 @@
 Poketrade::Application.routes.draw do
+  resources :pokemon_trainers
+
+  resources :trade_completes
+
   get "trade/index"
   resources :trade_requests do
     member do
