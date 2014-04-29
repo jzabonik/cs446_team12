@@ -1,6 +1,5 @@
 class PokemonsController < ApplicationController
-  before_filter :authenticate_admin!, :except => [:show, :index]
-  before_filter :check_logged_in!, :only => [:show, :index]
+  before_filter :check_logged_in!
   before_action :set_pokemon, only: [:show, :edit, :update, :destroy]
 
   # GET /pokemons
@@ -75,8 +74,6 @@ class PokemonsController < ApplicationController
     end
 	
 	def check_logged_in! # if admin is not logged in, user must be logged in
-      if !admin_signed_in?
-        authenticate_trainer!
-      end   
+      authenticate_trainer!  
     end
 end

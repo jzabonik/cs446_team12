@@ -10,7 +10,6 @@ Poketrade::Application.routes.draw do
     end
   end
 
-  devise_for :admins
   get "profile/index"
   resources :trainer_pokemons
 

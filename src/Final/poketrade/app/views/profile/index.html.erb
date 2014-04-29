@@ -118,7 +118,7 @@
     <tr>
 	  <td>
 		<% trade_complete.pokemon_trainers.each do |pokemon_trainer| %>
-		  <% if trainer_pokemon.trainer_id != current_trainer.id %>
+		  <% if pokemon_trainer.trainer_id != current_trainer.id %>
 			<%= image_tag(Pokemon.find(pokemon_trainer.pokemon_id).image_url, class: 'list_image') %>
 		  <% end %>
 	    <% end %>

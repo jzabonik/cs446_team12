@@ -6,10 +6,6 @@ class ProfileController < ApplicationController
   private
   
     def check_logged_in! # if admin is not logged in, user must be logged in
-      if !admin_signed_in?
-        authenticate_trainer!
-	  else
-		authenticate_admin!
-      end   
+      authenticate_trainer!  
     end
 end
